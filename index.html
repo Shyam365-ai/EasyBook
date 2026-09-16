@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EasyBook – Smart Car Rental Automation Platform</title>
+  <meta name="description" content="EasyBook is the AI-powered, IoT-enabled car rental management platform. Automate your fleet, maximize revenue, and delight customers with intelligent automation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Capybara Preloader (From Uiverse.io by Novaxlo) -->
+  <div class="preloader-overlay" id="preloader">
+    <div class="capybaraloader">
+      <div class="capybara">
+        <div class="capy"></div>
+        <div class="capyleg2"></div>
+        <div class="capyleg2"></div>
+        <div class="capyleg"></div>
+        <div class="capyhead">
+          <div class="capyear"><div class="capyear2"></div></div>
+          <div class="capyear"><div class="capyear2"></div></div>
+          <div class="capyeye"></div>
+          <div class="capyeye"></div>
+          <div class="capymouth">
+            <div class="capylips"></div>
+            <div class="capylips"></div>
+          </div>
+        </div>
+      </div>
+      <div class="loader">
+        <div class="loaderline"></div>
+      </div>
+    </div>
+    <div class="preloader-brand">
+      Easy<span class="logo-accent">Book</span>
+    </div>
+    <div class="preloader-text">Loading platform...</div>
+  </div>
+
+  <!-- Animated Background Canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" id="logo-link">
+        <span class="logo-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <path d="M4 20L8 12H24L28 20H4Z" fill="url(#logo-grad)"/>
+            <path d="M6 20H26V24H6Z" fill="url(#logo-grad)"/>
+            <circle cx="10" cy="24" r="2.5" fill="#00d4ff"/>
+            <circle cx="22" cy="24" r="2.5" fill="#00d4ff"/>
+            <path d="M12 15L14 10H18L20 15" stroke="#00d4ff" stroke-width="1.5"/>
+            <defs>
+              <linearGradient id="logo-grad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#6366f1"/>
+                <stop offset="100%" stop-color="#00d4ff"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </span>
+        <span class="logo-text">Easy<span class="logo-accent">Book</span></span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#features" class="nav-link">Features</a></li>
+        <li><a href="#dashboard" class="nav-link">Dashboard</a></li>
+        <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+        <li><a href="#fleet" class="nav-link">Fleet AI</a></li>
+        <li><a href="#pricing" class="nav-link">Pricing</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="#pricing" class="btn-ghost" id="nav-login">Log In</a>
+        <a href="#contact" class="btn-primary" id="nav-demo">Get Demo</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        AI-Powered Fleet Management · Est. 2024
+      </div>
+      <h1 class="hero-title">
+        The Future of<br/>
+        <span class="gradient-text">Car Rental</span><br/>
+        Is Automated
+      </h1>
+      <p class="hero-subtitle">
+        Harness real-time IoT telemetry, predictive AI, and seamless automation to supercharge your rental fleet. From smart key handoffs to instant revenue insights — EasyBook runs your business while you focus on growth.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary btn-lg" id="hero-cta-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3l14 9-14 9V3z"/></svg>
+          Start Free Trial
+        </a>
+        <a href="#dashboard" class="btn-outline btn-lg" id="hero-cta-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          View Dashboard
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num" data-target="12000">0</span><span class="stat-suffix">+</span>
+          <span class="stat-label">Vehicles Managed</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="98">0</span><span class="stat-suffix">%</span>
+          <span class="stat-label">Uptime Guarantee</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="340">0</span><span class="stat-suffix">+</span>
+          <span class="stat-label">Rental Partners</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="47">0</span><span class="stat-suffix">%</span>
+          <span class="stat-label">Revenue Boost</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-wrapper">
+        <img src="hero_car_1789370345220.jpg" alt="Futuristic Smart Car with IoT" class="hero-img" id="hero-main-img"/>
+        <div class="img-overlay-badge badge-top-left">
+          <span class="pulse-dot"></span> Live Fleet Tracking
+        </div>
+        <div class="img-overlay-badge badge-bottom-right">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"/></svg>
+          AI Diagnostics Active
+        </div>
+      </div>
+      <div class="floating-card card-revenue">
+        <div class="fc-label">Today's Revenue</div>
+        <div class="fc-value">$24,830</div>
+        <div class="fc-trend up">▲ 12.4% vs yesterday</div>
+      </div>
+      <div class="floating-card card-fleet">
+        <div class="fc-label">Fleet Status</div>
+        <div class="fleet-pills">
+          <span class="pill pill-green">42 Active</span>
+          <span class="pill pill-yellow">5 Idle</span>
+          <span class="pill pill-red">2 Service</span>
+        </div>
+      </div>
+      <div class="floating-card card-ai">
+        <div class="fc-label">AI Recommendation</div>
+        <div class="fc-value-sm">Reposition 3 vehicles to Airport Zone for +$1,240 projected revenue</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trusted By -->
+  <section class="trusted">
+    <div class="container">
+      <p class="trusted-label">Trusted by leading rental operators worldwide</p>
+      <div class="logos-track">
+        <div class="logos-inner" id="logos-inner">
+          <div class="brand-logo">FleetPro</div>
+          <div class="brand-logo">DriveMax</div>
+          <div class="brand-logo">RentEdge</div>
+          <div class="brand-logo">CarBase</div>
+          <div class="brand-logo">MobilityX</div>
+          <div class="brand-logo">AutoVault</div>
+          <div class="brand-logo">SpeedRent</div>
+          <div class="brand-logo">NovaDrive</div>
+          <!-- Duplicates for seamless loop -->
+          <div class="brand-logo">FleetPro</div>
+          <div class="brand-logo">DriveMax</div>
+          <div class="brand-logo">RentEdge</div>
+          <div class="brand-logo">CarBase</div>
+          <div class="brand-logo">MobilityX</div>
+          <div class="brand-logo">AutoVault</div>
+          <div class="brand-logo">SpeedRent</div>
+          <div class="brand-logo">NovaDrive</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Core Platform</span>
+        <h2 class="section-title">Everything You Need to <span class="gradient-text">Automate & Scale</span></h2>
+        <p class="section-subtitle">From booking automation to predictive maintenance — one intelligent platform handles it all.</p>
+      </div>
+      <div class="features-grid">
+
+        <div class="feature-card feature-card--large" id="feat-iot">
+          <div class="feat-icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+          </div>
+          <h3 class="feat-title">Real-Time IoT Telemetry</h3>
+          <p class="feat-desc">Monitor every vehicle's location, speed, fuel level, engine health, and door status in real time via embedded IoT sensors. Alerts trigger automatically when anomalies are detected.</p>
+          <div class="feat-tags">
+            <span class="tag">GPS Tracking</span>
+            <span class="tag">OBD-II Integration</span>
+            <span class="tag">5G Connectivity</span>
+          </div>
+        </div>
+
+        <div class="feature-card" id="feat-ai">
+          <div class="feat-icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9.5 2A2.5 2.5 0 0112 4.5v15a2.5 2.5 0 01-5 0v-15A2.5 2.5 0 019.5 2zM14.5 2A2.5 2.5 0 0117 4.5v15a2.5 2.5 0 01-5 0v-15A2.5 2.5 0 0114.5 2z"/></svg>
+          </div>
+          <h3 class="feat-title">Predictive AI Engine</h3>
+          <p class="feat-desc">ML models forecast demand surges, optimal pricing windows, and maintenance schedules before issues arise.</p>
+          <div class="feat-tags">
+            <span class="tag">Demand Forecast</span>
+            <span class="tag">Dynamic Pricing</span>
+          </div>
+        </div>
+
+        <div class="feature-card" id="feat-booking">
+          <div class="feat-icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          </div>
+          <h3 class="feat-title">Smart Booking Engine</h3>
+          <p class="feat-desc">Automated booking confirmation, digital contracts, and smart key handoff via mobile app — zero manual intervention needed.</p>
+          <div class="feat-tags">
+            <span class="tag">e-Signature</span>
+            <span class="tag">Smart Keys</span>
+          </div>
+        </div>
+
+        <div class="feature-card" id="feat-maintenance">
+          <div class="feat-icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <h3 class="feat-title">Predictive Maintenance</h3>
+          <p class="feat-desc">AI detects wear patterns early and auto-schedules service appointments, reducing downtime by up to 60%.</p>
+          <div class="feat-tags">
+            <span class="tag">Health Scoring</span>
+            <span class="tag">Auto-Scheduling</span>
+          </div>
+        </div>
+
+        <div class="feature-card" id="feat-revenue">
+          <div class="feat-icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <h3 class="feat-title">Revenue Intelligence</h3>
+          <p class="feat-desc">Real-time P&L dashboards, utilization rates, and cohort analysis. Know exactly where every dollar comes from.</p>
+          <div class="feat-tags">
+            <span class="tag">Live Analytics</span>
+            <span class="tag">Custom Reports</span>
+          </div>
+        </div>
+
+        <div class="feature-card feature-card--large feature-card--right" id="feat-automation">
+          <div class="feat-icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M5.34 18.66l-1.41 1.41M12 2v2M12 20v2M4.93 4.93l1.41 1.41M18.66 18.66l1.41 1.41M2 12h2M20 12h2"/></svg>
+          </div>
+          <h3 class="feat-title">Full Workflow Automation</h3>
+          <p class="feat-desc">Create custom automation rules: trigger SMS/email reminders, auto-charge security deposits, flag late returns, escalate complaints — all without touching a button. EasyBook runs your ops 24/7.</p>
+          <div class="feat-tags">
+            <span class="tag">Trigger Rules</span>
+            <span class="tag">Auto-Billing</span>
+            <span class="tag">Notification Engine</span>
+            <span class="tag">API Webhooks</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Dashboard Preview Section -->
+  <section class="dashboard-section" id="dashboard">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Command Center</span>
+        <h2 class="section-title">One Dashboard. <span class="gradient-text">Total Control.</span></h2>
+        <p class="section-subtitle">Your entire rental operation — fleet, bookings, revenue, AI insights — unified in one stunning, real-time command center.</p>
+      </div>
+      <div class="dashboard-preview-wrap">
+        <div class="dashboard-glow"></div>
+        <img src="dashboard_preview_1789370358879.jpg" alt="EasyBook Smart Dashboard" class="dashboard-img" id="dashboard-screenshot"/>
+        <div class="dashboard-tabs">
+          <button class="dash-tab active" data-tab="fleet" id="tab-fleet">🚗 Fleet Map</button>
+          <button class="dash-tab" data-tab="ai" id="tab-ai">🤖 AI Insights</button>
+          <button class="dash-tab" data-tab="revenue" id="tab-revenue">📈 Revenue</button>
+          <button class="dash-tab" data-tab="iot" id="tab-iot">📡 IoT Status</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Process</span>
+        <h2 class="section-title">Up & Running in <span class="gradient-text">4 Simple Steps</span></h2>
+        <p class="section-subtitle">From sign-up to a fully automated fleet in under 48 hours.</p>
+      </div>
+      <div class="steps-wrapper">
+        <div class="steps-line"></div>
+        <div class="step-item" id="step-1">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <h3>Connect Your Fleet</h3>
+            <p>Install our plug-and-play OBD-II IoT dongles or integrate via our open API. Supports 2,000+ vehicle models from 2010 onwards.</p>
+          </div>
+        </div>
+        <div class="step-item" id="step-2">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <h3>Configure Automation Rules</h3>
+            <p>Use the visual rule builder to define your booking flows, pricing logic, maintenance triggers, and customer communication sequences.</p>
+          </div>
+        </div>
+        <div class="step-item" id="step-3">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <h3>Train the AI on Your Data</h3>
+            <p>Our ML engine ingests your historical bookings and local demand patterns to immediately start optimizing pricing and fleet positioning.</p>
+          </div>
+        </div>
+        <div class="step-item" id="step-4">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <h3>Watch Revenue Grow</h3>
+            <p>EasyBook runs autonomously in the background. Monitor live KPIs on your dashboard and act on AI-generated opportunities as they arise.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fleet AI Section -->
+  <section class="fleet-ai" id="fleet">
+    <div class="container">
+      <div class="fleet-ai-grid">
+        <div class="fleet-ai-content">
+          <span class="section-tag">Fleet Intelligence</span>
+          <h2 class="section-title">AI That Thinks Like Your <span class="gradient-text">Best Fleet Manager</span></h2>
+          <p class="section-subtitle" style="text-align:left;">EasyBook's AI continuously analyzes demand heatmaps, traffic patterns, and competitor pricing to make data-driven decisions about your fleet — so you don't have to.</p>
+          <ul class="fleet-ai-list">
+            <li>
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Dynamic Repositioning</strong>
+                <p>AI suggests or auto-dispatches vehicles to high-demand zones in real time.</p>
+              </div>
+            </li>
+            <li>
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Smart Surge Pricing</strong>
+                <p>Automatically adjusts rental rates based on local demand, weather, and events.</p>
+              </div>
+            </li>
+            <li>
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Theft & Anomaly Detection</strong>
+                <p>Instant alerts when a vehicle deviates from expected routes or usage patterns.</p>
+              </div>
+            </li>
+            <li>
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Driver Risk Scoring</strong>
+                <p>AI scores customer driving behavior and auto-adjusts deposits or flags high-risk renters.</p>
+              </div>
+            </li>
+          </ul>
+          <a href="#contact" class="btn-primary" id="fleet-ai-cta">Explore Fleet AI →</a>
+        </div>
+        <div class="fleet-ai-visual">
+          <div class="ai-metrics-panel">
+            <div class="amp-header">
+              <span class="amp-dot active"></span>
+              <span>AI Fleet Brain — Live</span>
+            </div>
+            <div class="amp-metric">
+              <span class="amp-label">Fleet Utilization</span>
+              <div class="amp-bar-track"><div class="amp-bar" style="--pct:84%"></div></div>
+              <span class="amp-val">84%</span>
+            </div>
+            <div class="amp-metric">
+              <span class="amp-label">Revenue Efficiency</span>
+              <div class="amp-bar-track"><div class="amp-bar" style="--pct:91%"></div></div>
+              <span class="amp-val">91%</span>
+            </div>
+            <div class="amp-metric">
+              <span class="amp-label">Maintenance Predicted</span>
+              <div class="amp-bar-track"><div class="amp-bar" style="--pct:73%"></div></div>
+              <span class="amp-val">73%</span>
+            </div>
+            <div class="amp-metric">
+              <span class="amp-label">Customer Satisfaction</span>
+              <div class="amp-bar-track"><div class="amp-bar" style="--pct:96%"></div></div>
+              <span class="amp-val">96%</span>
+            </div>
+            <div class="amp-alerts">
+              <div class="amp-alert-item alert-info">
+                <span>📍</span> 3 vehicles repositioned to Airport Zone
+              </div>
+              <div class="amp-alert-item alert-warning">
+                <span>⚠️</span> Vehicle #TX-441: Engine temp high
+              </div>
+              <div class="amp-alert-item alert-success">
+                <span>💰</span> Dynamic pricing raised for downtown zone +18%
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Social Proof</span>
+        <h2 class="section-title">Rental Owners <span class="gradient-text">Love EasyBook</span></h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testi-card" id="testi-1">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"EasyBook completely transformed our operation. We went from managing 30 vehicles manually to 120 vehicles with the same team. Revenue is up 52% in 6 months."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background: linear-gradient(135deg, #6366f1, #00d4ff)">MR</div>
+            <div>
+              <div class="testi-name">Marcus Reeves</div>
+              <div class="testi-role">CEO, DriveMax London</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card testi-card--featured" id="testi-2">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"The AI pricing engine alone paid for a year's subscription in the first week. Our peak-hour revenue went through the roof. I don't know how we managed without it."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background: linear-gradient(135deg, #f59e0b, #ef4444)">SL</div>
+            <div>
+              <div class="testi-name">Sofia Larsson</div>
+              <div class="testi-role">Operations Director, NovaDrive</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card" id="testi-3">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Real-time IoT tracking saved us from two theft incidents this year. The anomaly detection alerts are incredibly fast and accurate. Best investment we've made."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background: linear-gradient(135deg, #10b981, #3b82f6)">JP</div>
+            <div>
+              <div class="testi-name">James Patel</div>
+              <div class="testi-role">Fleet Manager, FleetPro India</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Pricing</span>
+        <h2 class="section-title">Transparent Pricing, <span class="gradient-text">Massive ROI</span></h2>
+        <p class="section-subtitle">Start free, scale as you grow. All plans include our core automation engine.</p>
+        <div class="pricing-toggle">
+          <span class="toggle-label" id="toggle-monthly-label">Monthly</span>
+          <button class="toggle-btn" id="pricing-toggle" aria-label="Toggle billing period">
+            <span class="toggle-thumb"></span>
+          </button>
+          <span class="toggle-label">Annual <span class="save-badge">Save 25%</span></span>
+        </div>
+      </div>
+      <div class="pricing-grid">
+
+        <div class="pricing-card" id="plan-starter">
+          <div class="plan-name">Starter</div>
+          <div class="plan-price">
+            <span class="price-currency">$</span>
+            <span class="price-amount" data-monthly="99" data-annual="74">99</span>
+            <span class="price-period">/mo</span>
+          </div>
+          <p class="plan-desc">Perfect for small operators with up to 20 vehicles.</p>
+          <ul class="plan-features">
+            <li>✓ Up to 20 vehicles</li>
+            <li>✓ Real-time GPS tracking</li>
+            <li>✓ Smart booking engine</li>
+            <li>✓ Basic analytics dashboard</li>
+            <li>✓ Email support</li>
+            <li class="disabled">✗ AI pricing engine</li>
+            <li class="disabled">✗ Predictive maintenance</li>
+          </ul>
+          <a href="#contact" class="btn-outline btn-full" id="plan-starter-cta">Get Started</a>
+        </div>
+
+        <div class="pricing-card pricing-card--featured" id="plan-pro">
+          <div class="plan-badge">Most Popular</div>
+          <div class="plan-name">Professional</div>
+          <div class="plan-price">
+            <span class="price-currency">$</span>
+            <span class="price-amount" data-monthly="299" data-annual="224">299</span>
+            <span class="price-period">/mo</span>
+          </div>
+          <p class="plan-desc">For growing operators scaling 20–100 vehicles.</p>
+          <ul class="plan-features">
+            <li>✓ Up to 100 vehicles</li>
+            <li>✓ Full IoT telemetry suite</li>
+            <li>✓ AI pricing engine</li>
+            <li>✓ Predictive maintenance</li>
+            <li>✓ Workflow automation builder</li>
+            <li>✓ Revenue intelligence suite</li>
+            <li>✓ Priority support 24/7</li>
+          </ul>
+          <a href="#contact" class="btn-primary btn-full" id="plan-pro-cta">Start Free Trial</a>
+        </div>
+
+        <div class="pricing-card" id="plan-enterprise">
+          <div class="plan-name">Enterprise</div>
+          <div class="plan-price">
+            <span class="price-custom">Custom</span>
+          </div>
+          <p class="plan-desc">Unlimited vehicles, white-label options, dedicated success manager.</p>
+          <ul class="plan-features">
+            <li>✓ Unlimited vehicles</li>
+            <li>✓ White-label platform</li>
+            <li>✓ Custom AI model training</li>
+            <li>✓ Dedicated API rate limits</li>
+            <li>✓ On-site onboarding</li>
+            <li>✓ SLA 99.99% uptime</li>
+            <li>✓ Dedicated account team</li>
+          </ul>
+          <a href="#contact" class="btn-outline btn-full" id="plan-enterprise-cta">Talk to Sales</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <span class="section-tag">Get In Touch</span>
+          <h2 class="section-title">Ready to <span class="gradient-text">Automate Your Fleet?</span></h2>
+          <p>Our team of fleet automation specialists will give you a personalized demo, answer your questions, and set up your trial — all within 24 hours.</p>
+          <div class="contact-details">
+            <div class="contact-item">
+              <span class="contact-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </span>
+              <div>
+                <div class="contact-label">Email</div>
+                <div>hello@easybook.io</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+              </span>
+              <div>
+                <div class="contact-label">Phone</div>
+                <div>+1 (800) EASY-BOOK</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </span>
+              <div>
+                <div class="contact-label">HQ</div>
+                <div>San Francisco, CA · London · Singapore</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form-wrap">
+          <form class="contact-form" id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="f-name">Full Name</label>
+                <input type="text" id="f-name" name="name" placeholder="Alex Johnson" required />
+              </div>
+              <div class="form-group">
+                <label for="f-email">Email</label>
+                <input type="email" id="f-email" name="email" placeholder="alex@company.com" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="f-company">Company</label>
+                <input type="text" id="f-company" name="company" placeholder="Your Company" />
+              </div>
+              <div class="form-group">
+                <label for="f-fleet">Fleet Size</label>
+                <select id="f-fleet" name="fleet">
+                  <option value="">Select fleet size</option>
+                  <option value="1-20">1–20 vehicles</option>
+                  <option value="21-100">21–100 vehicles</option>
+                  <option value="100+">100+ vehicles</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="f-message">Message</label>
+              <textarea id="f-message" name="message" rows="4" placeholder="Tell us about your fleet and what you're looking to automate..."></textarea>
+            </div>
+            <button type="submit" class="btn-primary btn-full btn-lg" id="form-submit">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Send Message & Book Demo
+            </button>
+            <div class="form-success" id="form-success">
+              Thank you! Our team will contact you within 24 hours.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">
+            <span class="logo-icon">
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                <path d="M4 20L8 12H24L28 20H4Z" fill="url(#footer-grad)"/>
+                <path d="M6 20H26V24H6Z" fill="url(#footer-grad)"/>
+                <circle cx="10" cy="24" r="2.5" fill="#00d4ff"/>
+                <circle cx="22" cy="24" r="2.5" fill="#00d4ff"/>
+                <defs>
+                  <linearGradient id="footer-grad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#6366f1"/>
+                    <stop offset="100%" stop-color="#00d4ff"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </span>
+            <span class="logo-text">Easy<span class="logo-accent">Book</span></span>
+          </a>
+          <p class="footer-tagline">The intelligent automation layer for modern car rental businesses.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-link" id="social-twitter" aria-label="Twitter">𝕏</a>
+            <a href="#" class="social-link" id="social-linkedin" aria-label="LinkedIn">in</a>
+            <a href="#" class="social-link" id="social-youtube" aria-label="YouTube">▶</a>
+          </div>
+        </div>
+        <div class="footer-links-grid">
+          <div class="footer-col">
+            <div class="footer-col-title">Product</div>
+            <a href="#features">Features</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#">Changelog</a>
+            <a href="#">API Docs</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Solutions</div>
+            <a href="#">Small Fleets</a>
+            <a href="#">Enterprise</a>
+            <a href="#">White Label</a>
+            <a href="#">Integrations</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Company</div>
+            <a href="#">About</a>
+            <a href="#">Blog</a>
+            <a href="#">Careers</a>
+            <a href="#contact">Contact</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Legal</div>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Security</a>
+            <a href="#">GDPR</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 EasyBook Technologies Inc. All rights reserved.</span>
+        <span class="footer-mono">Built with AI · Powered by Automation</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top -->
+  <button class="scroll-top" id="scroll-top" aria-label="Scroll to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
